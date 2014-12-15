@@ -17,13 +17,13 @@ public class PlayerController : MonoBehaviour
 	#region Private Variables
 	// Variable to hold the score of the game (the number of PickUp
 	// objects collected)
-	private int score;
+	// private int score;
 	#endregion
 
 	void Start()
 	{
 		// Initialize the score to zero
-		score = 0;
+		GameMaster.instance.PlayerScore = 0;
 		UpdateScoreDisplay();
 	}
 
@@ -49,7 +49,10 @@ public class PlayerController : MonoBehaviour
 		if (other.gameObject.tag == "PickUp")
 		{	 
 			other.gameObject.SetActive(false);
-			score++;
+
+			// score++;
+			GameMaster.instance.PlayerScore++;
+
 			UpdateScoreDisplay();
 		}
 	}
@@ -57,6 +60,6 @@ public class PlayerController : MonoBehaviour
 	
 	void UpdateScoreDisplay()
 	{
-		scoreText.text = string.Format("Score: {0}", score);
+		scoreText.text = string.Format("Score: {0}", GameMaster.instance.PlayerScore);
 	}
 }
